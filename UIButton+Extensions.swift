@@ -9,6 +9,7 @@ import Foundation
 
 extension UIButton {
 	
+	//MARK: — wiggle() => Wiggles the button in x axis.
 	func wiggle() {
 		let wiggleAnim = CABasicAnimation(keyPath: "position")
 		wiggleAnim.duration = 0.05
@@ -18,7 +19,11 @@ extension UIButton {
 		wiggleAnim.toValue = CGPoint(x: self.center.x + 4.0, y: self.center.y)
 		layer.add(wiggleAnim, forKey: "position")
 	}
+	/*
+		Button.wiggle()
+	*/
 	
+	//MARK: — dim() => Button color would gets dimmed and reverses.
 	func dim() {
 		UIView.animate(withDuration: 0.15, animations: {
 			self.alpha = 0.75
@@ -28,7 +33,11 @@ extension UIButton {
 			})
 		}
 	}
+	/*
+		Button.dim()
+	*/
 	
+	//MARK: — colorize() => Provides a random color to button.
 	func colorize() {
 		let randomNumberArray = generateRandomnumbers(quantity: 3)
 		let randomColor = UIColor(red: randomNumberArray[0]/255, green: randomNumberArray[1]/255, blue: randomNumberArray[2]/255, alpha: 1.0)
@@ -36,6 +45,9 @@ extension UIButton {
 			self.backgroundColor = randomColor
 		}
 	}
+	/*
+		Button.colorize()
+	*/
 	
 	func verticalAlignImageAndTitle(padding: CGFloat = 5.0, isTitleUnderImage: Bool = true) {
 		let imageSize = self.imageView!.frame.size
