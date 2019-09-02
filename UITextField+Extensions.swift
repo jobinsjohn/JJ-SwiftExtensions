@@ -26,4 +26,27 @@ extension UITextField {
 		textField.initTextFieldWithImage(image: UIImage(named: "image_name")!, andPlaceHolder: "sample_placeholder_text")
 	*/
 	
+	//MARK: — configureTextfield() => TextField with color, font, cornerradius, bordercolor, backgroundcolor,borderwidth
+	//FIXME: To be tested
+	
+	func configureTextfield(color: UIColor = .blue,
+				   font: UIFont = UIFont.boldSystemFont(ofSize: 12),
+				   cornerRadius: CGFloat,
+				   borderColor: UIColor? = nil,
+				   backgroundColor: UIColor,
+				   borderWidth: CGFloat? = nil) {
+		if let borderWidth = borderWidth {
+			self.layer.borderWidth = borderWidth
+		}
+		if let borderColor = borderColor {
+			self.layer.borderColor = borderColor.cgColor
+		}
+		self.layer.cornerRadius = cornerRadius
+		self.font = font
+		self.textColor = color
+		self.backgroundColor = backgroundColor
+	}
+	/*
+	textField.initTextFieldWithImage(image: UIImage(named: "image_name")!, andPlaceHolder: "sample_placeholder_text")
+	*/
 }
