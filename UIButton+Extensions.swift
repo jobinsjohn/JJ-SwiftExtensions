@@ -116,6 +116,10 @@ extension UIButton {
 		layer.cornerRadius = bounds.height / 2
 		clipsToBounds = true
 	}
+	/*
+		Button.round()
+	*/
+	
 	
 	//MARK: — bounce() => Make button bounce.
 	func bounce() {
@@ -127,6 +131,9 @@ extension UIButton {
 			})
 		}
 	}
+	/*
+		Button.bounce()
+	*/
 	
 	//MARK: — shine() => make button shine.
 	func shine() {
@@ -138,6 +145,9 @@ extension UIButton {
 			})
 		}
 	}
+	/*
+		Button.shine()
+	*/
 	
 	//MARK: — jump() => Makes button jump.
 	func jump() {
@@ -149,9 +159,9 @@ extension UIButton {
 			})
 		}
 	}
-	
-	
-	
+	/*
+		Button.jump()
+	*/
 	
 	//MARK: — HELPER FUNCTIONS SECTION
 	
