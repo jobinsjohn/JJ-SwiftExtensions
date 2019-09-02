@@ -49,6 +49,7 @@ extension UIButton {
 		Button.colorize()
 	*/
 	
+	//MARK: — verticalAlignImageAndTitle() => Provides Button with image & Title vertically aligned.
 	func verticalAlignImageAndTitle(padding: CGFloat = 5.0, isTitleUnderImage: Bool = true) {
 		let imageSize = self.imageView!.frame.size
 		let titleSize = self.titleLabel!.frame.size
@@ -68,4 +69,99 @@ extension UIButton {
 	addSubview(myButton)
 	myButton.verticalAlignImageAndTitle(padding: 6.0, isTitleUnderImage: false)
 	*/
+	
+	
+	//MARK: — startLoading() => Start loading animation in button.
+	func startLoading(color: UIColor) {
+		
+		let shapeOuter = shapeLayerOuter(color: color)
+		let shapeInner = shapeLayerInner(color: color)
+		
+		shapeOuter.add(animationOuter(), forKey: nil)
+		shapeInner.add(animationInner(), forKey: nil)
+		
+		self.layer.addSublayer(shapeOuter)
+		self.layer.addSublayer(shapeInner)
+		
+	}
+	//MARK: — stopLoading() => Stop loading animation in button.
+	func stopLoading(){
+		
+		UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+			self.alpha = 0
+		}) { (true) in
+			self.layer.removeFromSuperlayer()
+		}
+		
+	}
+	
+	//MARK: — HELPER FUNCTIONS SECTION
+	
+	//Helper functions for startLoading() & stopLoading()
+	private func shapeLayerOuter(color: UIColor) -> CAShapeLayer{
+		
+		let circleOut = UIBezierPath(arcCenter: CGPoint(x: self.bounds.midX, y: self.bounds.midY),
+									 radius: CGFloat(self.bounds.height * 0.4),
+									 startAngle: CGFloat(0),
+									 endAngle:CGFloat(Double.pi * 2),
+									 clockwise: true)
+		
+		
+		let shapeLayerOut = CAShapeLayer()
+		shapeLayerOut.path = circleOut.cgPath
+		shapeLayerOut.fillColor = UIColor.clear.cgColor
+		shapeLayerOut.strokeColor = color.cgColor
+		shapeLayerOut.strokeStart = 0.1
+		shapeLayerOut.strokeEnd = 1
+		shapeLayerOut.lineWidth = 3.5
+		shapeLayerOut.lineCap = "round"
+		shapeLayerOut.frame = self.bounds
+		
+		return shapeLayerOut
+		
+	}
+	//Helper functions for startLoading() & stopLoading()
+	private func shapeLayerInner(color: UIColor) -> CAShapeLayer{
+		
+		let circleIn = UIBezierPath(arcCenter: CGPoint(x: self.bounds.midX, y: self.bounds.midY),
+									radius: CGFloat(self.bounds.height * 0.2),
+									startAngle: CGFloat(0),
+									endAngle: CGFloat(Double.pi * 2),
+									clockwise: false)
+		
+		let shapeLayerIn = CAShapeLayer()
+		shapeLayerIn.path = circleIn.cgPath
+		shapeLayerIn.fillColor = UIColor.clear.cgColor
+		shapeLayerIn.strokeColor = color.cgColor
+		shapeLayerIn.strokeStart = 0.1
+		shapeLayerIn.strokeEnd = 1
+		shapeLayerIn.lineWidth = 3.2
+		shapeLayerIn.lineCap = "round"
+		shapeLayerIn.frame = self.bounds
+		
+		return shapeLayerIn
+		
+	}
+	//Helper functions for startLoading() & stopLoading()
+	private func animationOuter() -> CABasicAnimation{
+		let animationOut = CABasicAnimation(keyPath: "transform.rotation")
+		animationOut.fromValue = 0
+		animationOut.toValue = Double.pi * 2
+		animationOut.duration = 1
+		animationOut.repeatCount = Float.infinity
+		
+		return animationOut
+	}
+	//Helper functions for startLoading() & stopLoading()
+	private func animationInner() -> CABasicAnimation {
+		
+		let animationIn = CABasicAnimation(keyPath: "transform.rotation")
+		animationIn.fromValue = 0
+		animationIn.toValue = -(Double.pi * 2)
+		animationIn.duration = 1
+		animationIn.repeatCount = Float.infinity
+		
+		return animationIn
+		
+	}
 }
