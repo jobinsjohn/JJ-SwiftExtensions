@@ -111,6 +111,48 @@ extension UIButton {
 		Button.roundedButtonWithAvatarImage(UIImage(named: "image_name")!, borderWidth: 1, borderColor: UIColor.blueColor().CGColor)
 	*/
 	
+	//MARK: — round() => Set corner radius for button.
+	func round() {
+		layer.cornerRadius = bounds.height / 2
+		clipsToBounds = true
+	}
+	
+	//MARK: — bounce() => Make button bounce.
+	func bounce() {
+		UIView.animate(withDuration: 0.1, animations: {
+			self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+		}) { (completion) in
+			UIView.animate(withDuration: 0.1, animations: {
+				self.transform = .identity
+			})
+		}
+	}
+	
+	//MARK: — shine() => make button shine.
+	func shine() {
+		UIView.animate(withDuration: 0.1, animations: {
+			self.alpha = 0.5
+		}) { (completion) in
+			UIView.animate(withDuration: 0.1, animations: {
+				self.alpha = 1
+			})
+		}
+	}
+	
+	//MARK: — jump() => Makes button jump.
+	func jump() {
+		UIView.animate(withDuration: 0.1, animations: {
+			self.transform = CGAffineTransform(translationX: 0, y: -10)
+		}) { (completion) in
+			UIView.animate(withDuration: 0.1, animations: {
+				self.transform = .identity
+			})
+		}
+	}
+	
+	
+	
+	
 	//MARK: — HELPER FUNCTIONS SECTION
 	
 	//Helper functions for startLoading() & stopLoading()
