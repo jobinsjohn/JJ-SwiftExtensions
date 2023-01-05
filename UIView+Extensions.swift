@@ -21,4 +21,23 @@ extension UIView {
     }
     //Use like this:
     //someView.shake()
+
+    func addCornerRadius(_ radius: CGFloat = 4) {
+        layer.cornerRadius = radius
+        layer.masksToBounds = true
+    }
+    //parentView.addCornerRadius(16)
+
+    func addBorderLine(width: CGFloat = 1, color: UIColor) {
+        layer.borderWidth = width
+        layer.borderColor = color.cgColor
+    }
+    //parentView.addBorderLine(width: 2.0, color: .green)
+
+    func makeRounded() {
+        layer.masksToBounds = false
+        layer.cornerRadius = self.frame.height / 2
+        clipsToBounds = true
+    }
+    //parentView.makeRounded()
 }
