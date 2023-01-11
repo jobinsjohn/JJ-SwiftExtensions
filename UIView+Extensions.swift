@@ -48,4 +48,14 @@ extension UIView {
          layer.mask = mask
      }
     //view.roundCorners(corners: [.topLeft, .topRight], radius: 20)
+
+    func addBlurredBackground(style: UIBlurEffect.Style) {
+        let blurEffect = UIBlurEffect(style: style)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = self.frame
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurView)
+        self.sendSubviewToBack(blurView)
+    }
+
 }
